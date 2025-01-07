@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CabangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -33,6 +34,13 @@ Route::post('/registrasi/submit', [AuthController::class, 'submit'])->name('regi
 Route::get('/logacc', [AuthController::class, 'indexlogin'])->name('logacc.index');
 Route::post('/logacc/submit', [AuthController::class, 'submitlogin'])->name('logacc.submit');    
 
-Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'Admin_Utama']);
+
+Route::middleware(['auth', 'Admin_Utama'])->group(function(){
+    Route::get('admin/dashboard', [HomeController::class, 'index']);
+    Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/cabang', [CabangController::class, 'tampil'])->name('admin.branch'); 
+    Route::get('/admin/cabangs/{id}', [CabangController::class, 'show'])->name('branch.show');    
+});
+
 
 require __DIR__.'/auth.php';

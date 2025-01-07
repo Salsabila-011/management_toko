@@ -15,11 +15,11 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = Role::where('name', 'Admin_Utama')->first();
-        User::factory()->create([
-            'name' => 'Jayusman',
-            'email' => 'jayusman05@gmail.com',
-        ])->assignRole($admin);
+        // $admin = Role::where('name', 'Admin_Utama')->first();
+        // User::factory()->create([
+        //     // 'name' => 'Jayusman',
+        //     // 'email' => 'jayusman05@gmail.com',
+        // ])->assignRole($admin);
 
         
     }
