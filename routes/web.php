@@ -1,10 +1,16 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('logacc');
 });
 
 Route::get('/dashboard', function () {
@@ -20,5 +26,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/registrasi', [AuthController::class, 'index'])->name('registrasi.index');
+Route::post('/registrasi/submit', [AuthController::class, 'submit'])->name('registrasi.submit');
+
+Route::get('/logacc', [AuthController::class, 'indexlogin'])->name('logacc.index');
+Route::post('/logacc/submit', [AuthController::class, 'submitlogin'])->name('logacc.submit');    
+
+Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'Admin_Utama']);
 
 require __DIR__.'/auth.php';

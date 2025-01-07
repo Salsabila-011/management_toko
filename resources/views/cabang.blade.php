@@ -4,7 +4,5 @@
             {{ __('Cabang') }}
         </h2>
     </x-slot>
-    <div class="py-12">
-        
-    </div>
+    
 </x-app-layout>
