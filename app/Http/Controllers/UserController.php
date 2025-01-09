@@ -8,28 +8,25 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function create() 
-    { 
-        $roles = Role::all(); return view('user.create', compact('roles'));
-    }
-     public function store(Request $request) 
-    { $validated = $request->validate([ 
-        'name' => 'required|string|max:255', 
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8|confirmed', 
-        'role' => 'required|string|exists:roles,name', ]); 
-         $user = User::create([ 
-            'name' => $validated['name'], 
-            'email' => $validated['email'], 
-            'password' => bcrypt($validated['password']), 
-        ]);  
-        $user->assignRole($validated['role']); 
-        return redirect()->route('user.index')->with('success', 'Pengguna berhasil dibuat dengan role '.$validated['role']); 
+    public function tampil(){
+        $users['users'] = User::with('branch')->get();
+        return view('admin.pegawai', $users);
     }
 
-     public function index() 
-    { 
-        $users = User::with('roles')->get(); 
-        return view('user.index', compact('users')); 
+    public function edit(String $id){
+        $pegawai['pegawai'] = User::find($id);
+        return view('admin.edit', $pegawai);
+    }
+
+    public function destroy(String $id){
+        User::find($id)->delete();
+        return redirect()->back();
+    }
+
+    public function update( Request $request,  $id)
+    {
+        $pegawai = User::findOrFail($id); $pegawai->update($request->all());
+
+        return redirect()->route('admin.pegawai');
     }
 }

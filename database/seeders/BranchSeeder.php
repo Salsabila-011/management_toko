@@ -32,7 +32,7 @@ class BranchSeeder extends Seeder
                 'nama_cabang' => 'Bali',
             ],
             [
-                'cabang_id' => 'C5',
+                'cabang_id' => 'E5',
                 'nama_cabang' => 'Lampung',
             ],
         ]);

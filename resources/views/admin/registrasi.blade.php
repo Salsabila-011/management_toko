@@ -62,9 +62,12 @@
                           <input class="form-check-input" type="radio" name="cabang" id="cabang" value="D4">
                             <label class="form-check-label" for="cabang">Bali</label>
                           </div>
-                        <button class="btn btn-primary">Simpan</button>
+                          <div class="d-flex justify-content-between mt-3"> 
+                            <button type="submit" class="btn btn-primary">Simpan</button> 
+                            <a href="{{ route('admin.pegawai') }}" class="btn btn-secondary">Kembali</a> 
+                          </div>    
                      </form>
-               </div>
+                 </div>
             </div>
         </div>
     </div>

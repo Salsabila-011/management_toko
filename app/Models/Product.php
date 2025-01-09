@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $table = 'product';
+    protected $table = 'products';
     protected $fillable = [
         'nama',
         'kategori',
@@ -19,4 +19,9 @@ class Product extends Model
     public function cabang() { 
         return $this->belongsTo(Branch::class, 'cabang_id', 'cabang_id');
      }
+
+     public function transaksis()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
 }

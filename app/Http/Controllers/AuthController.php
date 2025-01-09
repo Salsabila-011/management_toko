@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     function index(){
-        return view ('registrasi');
+        return view ('admin.registrasi');
     }
 
     function submit(Request $request){
@@ -18,9 +18,10 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->roles = $request->roles;
+        $user->cabang_id = $request->cabang;
         $user->save();
         
-        return redirect()->route('logacc.index');
+        return redirect()->route('admin.pegawai');
     }
     
     function indexlogin(){

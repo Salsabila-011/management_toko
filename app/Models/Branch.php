@@ -24,4 +24,9 @@ class Branch extends Model
         return $this->hasMany(Product::class, 'cabang_id', 'cabang_id');
     }
 
+    public function pegawais() 
+    { 
+        return $this->hasMany(User::class, 'cabang_id','cabang_id'); 
+    }
+
 }
