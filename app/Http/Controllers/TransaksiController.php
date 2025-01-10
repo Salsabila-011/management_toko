@@ -12,10 +12,10 @@ class TransaksiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function view()
     {
-        $transactions = Transaksi::with('product')->get();
-        return view('transaksis.index', compact('transactions'));
+        $products = Transaksi::with('product')->get();
+        return view('supervisor', compact('products'));
     }
 
     /**
@@ -48,7 +48,7 @@ class TransaksiController extends Controller
 
         return redirect()->route('transaksis.index');
     }
-
+    
     /**
      * Display the specified resource.
      */
