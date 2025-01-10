@@ -11,7 +11,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Transaksi") }}
-                    <x-primary-button tag="a" href="{{  route('transaksis.create')}}">Transaksi</x-primary-button>
+                    <!-- <x-primary-button tag="a" href="{{  route('transaksis.create')}}">Transaksi</x-primary-button> -->
 
                     <div class="container mx-auto mt-5">
                     <h1 class="text-xl font-bold mb-5">Daftar Transaksi</h1>

@@ -51,15 +51,37 @@ Route::middleware(['auth', 'Admin_Utama'])->group(function(){
     Route::delete('/admin/pegaawai/{id}/destroy', [UserController::class, 'destroy'])->name('admin.destroy');
     Route::get('/admin/pegawai/tambah', [AuthController::class, 'index'])->name('registrasi.index');
     Route::post('/admin/pegawai/tambah/submit', [AuthController::class, 'submit'])->name('registrasi.submit');
+    Route::get('/admin/orders/pdf/{id}', [CabangController::class, 'generatePDF'])->name('admin.orders.pdf');
 });
 
 Route::middleware(['auth', 'Manajer_Toko'])->group(function(){
     Route::get('manager/dashboard',[BranchController::class, 'index']);
     Route::get('manager/dashboard',[BranchController::class, 'index'])->name('manager.dashboard');
     Route::get('manager/transaksi',[BranchController::class, 'transaksi'])->name('manager.transaksi');
+    Route::get('manager/orders/pdf', [BranchController::class, 'generatePDF'])->name('manager.orders.pdf');
 });
 
-Route::resource('transaksis', TransaksiController::class);
+Route::middleware(['auth', 'Supervisor'])->group(function(){
+    Route::get('supervisor/dashboard',[HomeController::class, 'superdash']);
+    Route::get('supervisor/dashboard',[HomeController::class, 'superdash'])->name('supervisor.dashboard');
+    Route::get('supervisor/transaksi',[HomeController::class, 'supershow'])->name('supervisor.show');
+});
+
+Route::middleware(['auth', 'Pegawai_Gudang'])->group(function(){
+    Route::get('gudang/dashboard',[HomeController::class, 'gudang']);
+    Route::get('gudang/dashboard',[HomeController::class, 'gudang'])->name('gudang.dashboard');
+    Route::get('gudang/stok',[HomeController::class, 'gudangstok'])->name('gudang.stok');
+    Route::get('gudang/create',[HomeController::class, 'gudangcreate'])->name('gudang.create');
+    Route::post('gudang/store',[HomeController::class, 'gudangstore'])->name('gudang.store');
+});
+
+Route::middleware(['auth', 'Kasir'])->group(function(){
+    Route::get('kasir/dashboard',[HomeController::class, 'kasir']);
+    Route::get('kasir/dashboard',[HomeController::class, 'kasir'])->name('kasir.dashboard');
+    Route::resource('transaksis', TransaksiController::class);
+});
+
+
 
 
 

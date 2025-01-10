@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
@@ -17,6 +18,8 @@ class TransaksiController extends Controller
         $products = Transaksi::with('product')->get();
         return view('supervisor', compact('products'));
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -33,6 +36,7 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
+        $id = Auth::user()->cabang;
         $product = Product::findOrFail($request->product_id);
         $jumlah = $request->jumlah;
         $harga = $product->harga;
@@ -43,12 +47,15 @@ class TransaksiController extends Controller
             'jumlah' => $jumlah,
             'harga' => $harga,
             'total_harga' => $total_harga,
-            
+            'cabang'=>$id,
         ]);
 
-        return redirect()->route('transaksis.index');
+        return redirect()->route('kasir.dashboard');
     }
     
+    public function index(){
+        return redirect()->route('kasir.dashboard');
+    }
     /**
      * Display the specified resource.
      */

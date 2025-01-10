@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Product;
+use App\Models\Transaksi;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class CabangController extends Controller
@@ -27,7 +30,18 @@ class CabangController extends Controller
     public function view($id) { 
         $data['branches'] = Branch::findOrFail($id); 
         $data['orders'] = Product::where('cabang_id', $id)->get();
+        $data['transaksis'] = Transaksi::where('cabang', $id)->get();
         return view('admin.show', $data); 
     }
+
+    public function generatePDF($id)
+{
+    
+    $orders = Transaksi::where('cabang', $id)->get();
+
+    $pdf = Pdf::loadView('admin.print', compact('orders'));
+
+    return $pdf->download('orders.pdf');
+}
 
 }

@@ -38,6 +38,12 @@ class AuthController extends Controller
                 return redirect('admin/dashboard');
             }else if($request->user()->roles == 'Manajer_Toko'){
                 return redirect()->route('manager.dashboard');
+            }else if($request->user()->roles == 'Supervisor'){
+                return redirect()->route('supervisor.dashboard');
+            }else if($request->user()->roles == 'Pegawai_Gudang'){
+                return redirect()->route('gudang.dashboard');
+            }else if($request->user()->roles == 'Kasir'){
+                return redirect()->route('kasir.dashboard');
             }
     
             return redirect()->intended(route('dashboard'));

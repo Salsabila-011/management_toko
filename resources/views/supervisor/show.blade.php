@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Manager') }}
+            {{ __('Supervisor') }}
         </h2>
     </x-slot>
     
@@ -11,11 +11,23 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Transaksi") }}
-                    <x-primary-button tag="a" href="{{  route('manager.dashboard')}}">Kembali</x-primary-button>
-                    <x-primary-button tag="a" href="{{ route('manager.orders.pdf') }}">Unduh PDF</x-primary-button>
+                    <x-primary-button tag="a" href="{{  route('supervisor.dashboard')}}">Kembali</x-primary-button>
 
                     <div class="container mx-auto py-8">
     <h1 class="text-2xl font-bold mb-6">Orders for Cabang: {{ $orders->first()->cabang ?? 'N/A' }}</h1>
+    <form method="GET" action="{{ route('supervisor.show') }}" class="mb-4">
+    <div class="flex items-center text-white">
+        <label for="from_date" class="mr-2 text-white">From:</label>
+        <input type="date" name="from_date" id="from_date" 
+               class="mr-4 px-3 py-2 border rounded text-black" value="{{ request('from_date') }}">
+
+        <label for="to_date" class="mr-2 text-white">To:</label>
+        <input type="date" name="to_date" id="to_date" 
+               class="mr-4 px-3 py-2 border rounded text-black" value="{{ request('to_date') }}">
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
+    </div>
+</form>
 
     <table class="min-w-full bg-white border border-gray-300 text-center">
         <thead>

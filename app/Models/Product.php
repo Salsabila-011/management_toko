@@ -14,6 +14,7 @@ class Product extends Model
         'kategori',
         'harga',
         'cabang_id',
+        'stok',
     ];
 
     public function cabang() { 
