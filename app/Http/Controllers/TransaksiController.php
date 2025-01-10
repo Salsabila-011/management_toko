@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -42,6 +43,7 @@ class TransaksiController extends Controller
             'jumlah' => $jumlah,
             'harga' => $harga,
             'total_harga' => $total_harga,
+            
         ]);
 
         return redirect()->route('transaksis.index');
@@ -78,4 +80,6 @@ class TransaksiController extends Controller
     {
         //
     }
+
+   
 }

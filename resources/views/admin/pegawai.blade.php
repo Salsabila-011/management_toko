@@ -24,7 +24,7 @@
                     <td class="w-1/4 py-3">{{ $pegawai->name }}</td> 
                     <td class="w-1/4 py-3">{{ $pegawai->email }}</td> 
                     <td class="w-1/4 py-3">{{ $pegawai->roles }}</td> 
-                    <td class="w-1/4 py-3">{{ $pegawai->branch ? $pegawai->branch->nama_cabang : 'Owner' }}</td>
+                    <td class="w-1/4 py-3">{{ $pegawai->branch ? $pegawai->branch->nama_cabang : '' }}</td>
                     <td class="flex space-x-2 py-3 px-2">
                          <a href="{{ route('admin.edit', $pegawai->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Edit</a> 
                     <form action="{{ route('admin.destroy', $pegawai->id) }}" method="POST" class="inline">

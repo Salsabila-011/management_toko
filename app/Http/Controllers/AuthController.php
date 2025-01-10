@@ -18,7 +18,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->roles = $request->roles;
-        $user->cabang_id = $request->cabang;
+        $user->cabang = $request->cabang;
         $user->save();
         
         return redirect()->route('admin.pegawai');
@@ -36,6 +36,8 @@ class AuthController extends Controller
             $request->session()->regenerate();
             if($request->user()->roles == 'Admin_Utama'){
                 return redirect('admin/dashboard');
+            }else if($request->user()->roles == 'Manajer_Toko'){
+                return redirect()->route('manager.dashboard');
             }
     
             return redirect()->intended(route('dashboard'));

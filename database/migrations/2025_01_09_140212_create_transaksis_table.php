@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer(column: 'jumlah'); 
             $table->decimal('harga', 10, 2); 
             $table->decimal('total_harga', 10, 2);
+            $table->string('cabang');
             $table->timestamps();
         });
     }

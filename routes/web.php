@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CabangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -47,6 +48,12 @@ Route::middleware(['auth', 'Admin_Utama'])->group(function(){
     Route::delete('/admin/pegaawai/{id}/destroy', [UserController::class, 'destroy'])->name('admin.destroy');
     Route::get('/admin/pegawai/tambah', [AuthController::class, 'index'])->name('registrasi.index');
     Route::post('/admin/pegawai/tambah/submit', [AuthController::class, 'submit'])->name('registrasi.submit');    
+});
+
+Route::middleware(['auth', 'Manajer_Toko'])->group(function(){
+    Route::get('manager/dashboard',[BranchController::class, 'index']);
+    Route::get('manager/dashboard',[BranchController::class, 'index'])->name('manager.dashboard');
+    Route::get('manager/transaksi',[BranchController::class, 'transaksi'])->name('manager.transaksi');
 });
 
 Route::resource('transaksis', TransaksiController::class);

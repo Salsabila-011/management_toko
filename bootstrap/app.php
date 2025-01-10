@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'role.redirect' => \App\Http\Middleware\RedirectIfHasRole::class,
             'Admin_Utama' => \App\Http\Middleware\Admin::class,
+            'Manajer_Toko' => \App\Http\Middleware\Manager::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

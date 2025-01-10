@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
-    protected $fillable = [ 'jumlah', 'harga','product_id', 'total_harga'];
+    protected $fillable = [ 'jumlah', 'harga','product_id', 'total_harga', 'cabang'];
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
