@@ -14,10 +14,10 @@
                     <x-primary-button tag="a" href="{{  route('supervisor.dashboard')}}">Kembali</x-primary-button>
 
                     <div class="container mx-auto py-8">
-    <h1 class="text-2xl font-bold mb-6">Orders for Cabang: {{ $orders->first()->cabang ?? 'N/A' }}</h1>
+    <h1 class="text-2xl font-bold mb-6">Pesanan Untuk Cabang: {{ $orders->first()->cabang ?? 'N/A' }}</h1>
     <form method="GET" action="{{ route('supervisor.show') }}" class="mb-4">
     <div class="flex items-center text-white">
-        <label for="from_date" class="mr-2 text-white">From:</label>
+        <label for="from_date" class="m-2 text-white">From:</label>
         <input type="date" name="from_date" id="from_date" 
                class="mr-4 px-3 py-2 border rounded text-black" value="{{ request('from_date') }}">
 
@@ -25,7 +25,7 @@
         <input type="date" name="to_date" id="to_date" 
                class="mr-4 px-3 py-2 border rounded text-black" value="{{ request('to_date') }}">
 
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
+        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Filter</button>
     </div>
 </form>
 
