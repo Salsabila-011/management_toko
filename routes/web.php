@@ -6,6 +6,7 @@ use App\Http\Controllers\CabangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -42,13 +43,14 @@ Route::middleware(['auth', 'Admin_Utama'])->group(function(){
     Route::get('/admin/cabang', [CabangController::class, 'tampil'])->name('admin.branch');
     Route::get('/admin/supervisor', [TransaksiController::class, 'view'])->name('admin.supervisor');
     Route::get('/admin/cabang', [CabangController::class, 'tampil'])->name('admin.branch'); 
-    Route::get('/admin/cabangs/{id}', [CabangController::class, 'show'])->name('branch.show');
+    Route::get('/admin/cabangs/{id}', [CabangController::class, 'view'])->name('admin.show');
+    // Route::get('/admin/cabangs/{id}', [CabangController::class, 'view'])->name('admin.show');
     Route::get('/admin/pegawai', [UserController::class, 'tampil'])->name('admin.pegawai');
     Route::get('/admin/pegawai/edit/{id}', [UserController::class, 'edit'])->name('admin.edit');
     Route::patch('/admin/pegawai/{id}/update', [UserController::class, 'update'])->name('admin.update');
     Route::delete('/admin/pegaawai/{id}/destroy', [UserController::class, 'destroy'])->name('admin.destroy');
     Route::get('/admin/pegawai/tambah', [AuthController::class, 'index'])->name('registrasi.index');
-    Route::post('/admin/pegawai/tambah/submit', [AuthController::class, 'submit'])->name('registrasi.submit');    
+    Route::post('/admin/pegawai/tambah/submit', [AuthController::class, 'submit'])->name('registrasi.submit');
 });
 
 Route::middleware(['auth', 'Manajer_Toko'])->group(function(){
