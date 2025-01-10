@@ -39,6 +39,7 @@ Route::middleware(['auth', 'Admin_Utama'])->group(function(){
     Route::get('admin/dashboard', [HomeController::class, 'index']);
     Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/cabang', [CabangController::class, 'tampil'])->name('admin.branch');
+    Route::get('/admin/supervisor', [TransaksiController::class, 'view'])->name('admin.supervisor');
     Route::get('/admin/cabang', [CabangController::class, 'tampil'])->name('admin.branch'); 
     Route::get('/admin/cabangs/{id}', [CabangController::class, 'show'])->name('branch.show');
     Route::get('/admin/pegawai', [UserController::class, 'tampil'])->name('admin.pegawai');
@@ -54,3 +55,8 @@ Route::resource('transaksis', TransaksiController::class);
 
 
 require __DIR__.'/auth.php';
+
+
+   Route::get('/supervisor', function () {
+    return view('supervisor');
+   });
