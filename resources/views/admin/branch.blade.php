@@ -32,7 +32,7 @@
                                         <td class="py-3 px-4">{{ $branch->cabang_id }}</td> 
                                         <td class="py-3 px-4">{{ $branch->nama_cabang }}</td> 
                                         <td class="py-3 px-4"> 
-                                            <a href="{{ route('branch.show', $branch->cabang_id) }}" class="text-blue-500 hover:text-blue-700">Lihat Detail</a> 
+                                            <a href="{{ route('admin.show', $branch->cabang_id) }}" class="text-blue-500 hover:text-blue-700">Lihat Detail</a> 
                                         </td> 
                                     </tr> 
                                     @endforeach 
